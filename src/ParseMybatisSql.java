@@ -35,12 +35,12 @@ public class ParseMybatisSql extends AnAction {
             ApplicationManager.getApplication().invokeLater(() -> {
                 JBPopupFactory factory = JBPopupFactory.getInstance();
                 factory.createHtmlTextBalloonBuilder(result, null, new JBColor(new Color(78, 29, 76), new Color(119, 52, 96)), null)
-                        .setFadeoutTime(5000)
+                        .setFadeoutTime(10000)
                         .createBalloon()
                         .show(factory.guessBestPopupLocation(mEditor), Balloon.Position.below);
             });
         } else {
-            Messages.showInfoMessage("select text is not true", "ParseSql");
+            Messages.showInfoMessage("can't parse by now select text", "ParseSql");
         }
     }
 
@@ -48,7 +48,7 @@ public class ParseMybatisSql extends AnAction {
         try {
             Pattern p = Pattern.compile("\\n");
             String s = p.matcher(selectedText).replaceAll(" ");
-            Pattern p1 = Pattern.compile("\\d{4}\\-\\d{2}\\-\\d{2}\\W\\d{2}\\:\\d{2}\\:\\d{2}\\.\\d{3}\\W\\[[\\w|\\-]+\\]\\WDEBUG\\W");
+            Pattern p1 = Pattern.compile("\\d{4}-\\d{2}-\\d{2}\\W\\d{2}:\\d{2}:\\d{2}\\.\\d{3}\\W\\[[\\w|\\-]+]\\WDEBUG\\W");
             String s1 = p1.matcher(s).replaceAll("\n");
             String[] split = s1.split("\\n");
             List<String> collect = Arrays.stream(split)
