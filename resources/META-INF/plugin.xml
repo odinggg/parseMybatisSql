@@ -1,7 +1,7 @@
 <idea-plugin>
     <id>com.github.odinggg.parsemybatissql.ParseMybatisSql</id>
     <name>ParseMybatisSql</name>
-    <version>1.0</version>
+    <version>1.01</version>
     <vendor email="qinhaochun@aliyun.com" url="https://github.com/odinggg/parseMybatisSql">ParseMybatisSql</vendor>
 
     <description>     <![CDATA[
