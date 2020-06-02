@@ -8,6 +8,7 @@ import com.intellij.openapi.ui.Messages;
 import com.intellij.openapi.ui.popup.Balloon;
 import com.intellij.openapi.ui.popup.JBPopupFactory;
 import com.intellij.ui.JBColor;
+import org.apache.commons.lang.StringEscapeUtils;
 import org.apache.http.util.TextUtils;
 
 import java.awt.*;
@@ -34,7 +35,7 @@ public class ParseMybatisSql extends AnAction {
         if (!TextUtils.isBlank(result)) {
             ApplicationManager.getApplication().invokeLater(() -> {
                 JBPopupFactory factory = JBPopupFactory.getInstance();
-                factory.createHtmlTextBalloonBuilder(result, null, new JBColor(new Color(78, 29, 76), new Color(119, 52, 96)), null)
+                factory.createHtmlTextBalloonBuilder(StringEscapeUtils.escapeHtml(result), null, new JBColor(new Color(78, 29, 76), new Color(119, 52, 96)), null)
                         .setFadeoutTime(10000)
                         .createBalloon()
                         .show(factory.guessBestPopupLocation(mEditor), Balloon.Position.below);
@@ -105,6 +106,7 @@ public class ParseMybatisSql extends AnAction {
         if (split.length > 0) {
             return Arrays.stream(split)
                     .filter(Objects::nonNull)
+                    .map(s -> s.substring(1))
                     .filter(ParseMybatisSql::nonEmpty)
                     .collect(Collectors.toList());
         }
